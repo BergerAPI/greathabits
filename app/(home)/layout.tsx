@@ -1,8 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import React from "react";
 
@@ -38,11 +37,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
 
                 <div className="flex gap-1">
-                    <Link href="/auth">
+                    <Link href="/auth/signin">
                         <Button variant="ghost">Sign In</Button>
                     </Link>
 
-                    <Link href="/auth">
+                    <Link href="/auth/signup">
                         <Button variant="default">Sign Up</Button>
                     </Link>
                 </div>
