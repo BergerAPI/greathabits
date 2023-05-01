@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-navigation-menu": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.1",
     "@supabase/supabase-js": "^2.21.0",
     "@t3-oss/env-core": "^0.2.2",
