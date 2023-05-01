@@ -1,3 +1,4 @@
+import SupabaseProvider from '@/lib/supabase-provider';
 import './globals.css'
 import React from "react";
 
@@ -13,7 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='w-screen h-screen'>{children}</body>
+      <body className='w-screen h-screen'>
+        <SupabaseProvider>
+          {children}
+        </SupabaseProvider>
+      </body>
     </html>
   )
 }

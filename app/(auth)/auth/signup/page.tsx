@@ -9,7 +9,7 @@ export default async function SignUp() {
     const user = await supabase.auth.getUser()
 
     if (user.data.user !== null)
-        redirect("/app")
+        return redirect("/app")
 
     return (
         <div className="w-[350px] grid gap-5">
@@ -24,7 +24,7 @@ export default async function SignUp() {
 
             <AuthForm />
 
-            <div className="text-center">
+            <div className="text-center text-sm text-slate-500 dark:text-slate-400">
                 <Link href="/auth/signin">Already have an account?</Link>
             </div>
         </div>
