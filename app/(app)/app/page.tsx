@@ -13,8 +13,6 @@ const App = async () => {
 
     const todos = await supabase.from("todos").select("*")
 
-    console.log(todos)
-
     return <>
         <div>
             {todos.data?.map(todo => <div>
