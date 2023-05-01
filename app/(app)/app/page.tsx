@@ -1,3 +1,4 @@
+import TodoView from "@/components/todo-view"
 import { Button } from "@/components/ui/button"
 import { Database } from "@/lib/database"
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs"
@@ -13,12 +14,12 @@ const App = async () => {
 
     const todos = await supabase.from("todos").select("*")
 
+    if (todos.data === null)
+        return redirect("/")
+
     return <>
         <div>
-            {todos.data?.map(todo => <div>
-                <p>{todo.title}</p>
-                <p>{todo.description}</p>
-            </div>)}
+            <TodoView initialTodos={todos.data} />
         </div>
 
         <Button>Add Todo</Button>

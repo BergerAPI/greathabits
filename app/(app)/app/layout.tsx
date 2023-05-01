@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const router = useRouter()
 
     return (
-        <main>
+        <div>
             <div className="p-3 border-b border-slate-100 flex justify-between items-center">
                 <div className="hidden md:block">
                     <h1>Great Habits</h1>
@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Avatar>
-                            <AvatarImage src="https://github.com/bergerapi.png" alt="@shadcn" />
+                            <AvatarImage src="https://github.com/bergerapi.png" alt="@bergerapi" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
@@ -42,7 +42,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </DropdownMenu>
             </div>
 
-            {children}
-        </main>
+            <main className="max-w-5xl m-auto">
+                {children}
+            </main>
+        </div>
     )
 }
