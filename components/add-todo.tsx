@@ -11,6 +11,7 @@ interface Props {
 
 interface AddTodoInput {
     title: string
+    checked: boolean
 }
 
 const AddTodo: FC<Props> = () => {
@@ -18,23 +19,21 @@ const AddTodo: FC<Props> = () => {
     const { supabase } = useSupabase()
 
     // Adding todo's to the database
-    const onSubmit: SubmitHandler<AddTodoInput> = async ({ title }) => {
+    const onSubmit: SubmitHandler<AddTodoInput> = async ({ title, checked }) => {
         await supabase.from("todos").insert({
-            checked: false,
             user_id: (await supabase.auth.getUser()).data.user?.id!!,
+            checked,
             title
         })
 
         reset()
     }
 
-    return <>
-        <form className="px-3 flex items-center" onSubmit={handleSubmit(onSubmit)}>
-            <Checkbox className="bg-white" />
-            <Input variant="ghost" placeholder="Add new todos..." {...register("title")} />
-            <input type="submit" hidden />
-        </form>
-    </>
+    return <form className="px-3 flex items-center" onSubmit={handleSubmit(onSubmit)}>
+        <Checkbox className="bg-white" {...register("checked")} />
+        <Input variant="ghost" placeholder="Add new todos..." {...register("title", { minLength: 3 })} />
+        <input type="submit" hidden />
+    </form>
 }
 
 export default AddTodo
