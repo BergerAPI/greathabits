@@ -1,5 +1,7 @@
 import TodoView from "@/components/todo-view"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
 import { Database } from "@/lib/database"
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs"
 import { cookies, headers } from "next/headers"
@@ -17,13 +19,21 @@ const App = async () => {
     if (todos.data === null)
         return redirect("/")
 
-    return <>
+    return <div className="mt-16 space-y-8">
         <div>
-            <TodoView initialTodos={todos.data} />
+            <h1 className="scroll-m-20 text-2xl font-medium tracking-tight">Welcome back, Niclas</h1>
+            <p className="text-slate-500 dark:text-slate-400">You've got 2 tasks coming up in the next days.</p>
         </div>
 
-        <Button>Add Todo</Button>
-    </>
+        <div className="space-y-2">
+            <div className="px-3 flex items-center">
+                <Checkbox className="bg-white" />
+                <Input variant="ghost" placeholder="Add new todos..." />
+            </div>
+
+            <TodoView initialTodos={todos.data} />
+        </div>
+    </div>
 }
 
 export default App;
