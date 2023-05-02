@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     return (
         <div className="h-full flex flex-col">
-            <div className="p-3 border-b border-slate-100 flex justify-between items-center">
+            <div className="p-3 border-b border-slate-200 flex justify-between items-center">
                 <div className="hidden md:block">
                     <h1>Great Habits</h1>
                 </div>

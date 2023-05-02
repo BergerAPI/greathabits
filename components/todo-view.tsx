@@ -55,14 +55,16 @@ const TodoView: FC<Props> = ({ initialTodos }) => {
     }, [])
 
     return <>
-        {sortedTodos.map(todo => {
-            return <Todo
-                checked={todo.checked}
-                description={todo.description}
-                title={todo.title}
-                id={todo.id}
-                key={`${todo.id}`} />
-        })}
+        <div className="flex flex-col gap-3">
+            {sortedTodos.map(todo => {
+                return <Todo
+                    checked={todo.checked}
+                    description={todo.description}
+                    title={todo.title}
+                    id={todo.id}
+                    key={`${todo.id}`} />
+            })}
+        </div>
     </>
 }
 
