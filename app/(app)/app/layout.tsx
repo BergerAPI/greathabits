@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const router = useRouter()
 
     return (
-        <div>
+        <div className="h-full flex flex-col">
             <div className="p-3 border-b border-slate-100 flex justify-between items-center">
                 <div className="hidden md:block">
                     <h1>Great Habits</h1>
@@ -42,9 +42,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </DropdownMenu>
             </div>
 
-            <main className="max-w-5xl m-auto">
-                {children}
-            </main>
+            <div className="bg-slate-100 h-full">
+                <main className="max-w-5xl m-auto">
+                    {children}
+                </main>
+            </div>
+
         </div>
     )
 }

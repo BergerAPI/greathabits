@@ -3,6 +3,7 @@
 import { Database } from "@/lib/database";
 import { useSupabase } from "@/lib/supabase-provider";
 import { FC, useEffect, useState } from "react";
+import Todo from "./todo";
 
 type Todos = Database['public']['Tables']['todos']['Row']
 
@@ -15,6 +16,8 @@ const TodoView: FC<Props> = ({ initialTodos }) => {
     const { supabase } = useSupabase()
 
     useEffect(() => {
+
+        // When a new todo is added
         supabase.channel("todos").on("postgres_changes", {
             event: "INSERT",
             schema: "public",
@@ -23,15 +26,30 @@ const TodoView: FC<Props> = ({ initialTodos }) => {
             setTodos([...todos, payload.new as Todos])
         }).subscribe()
 
+        // When a todo is updated
+        supabase.channel("todos").on("postgres_changes", {
+            event: "UPDATE",
+            schema: "public",
+            table: "todos",
+        }, async (_) => {
+            const newTodos = await supabase.from("todos").select()
+
+            setTodos(newTodos.data!!)
+        }).subscribe()
     }, [])
 
     return <>
-        {todos.map(todo => {
-            return <div key={todo.id}>
-                <p>{todo.title}</p>
-                <p>{todo.description}</p>
-            </div>
-        })}
+        {todos
+            .sort((a, b) => a.id - b.id)
+            .sort((a, b) => (a.checked === b.checked) ? 0 : a.checked ? -1 : 1)
+            .map(todo => {
+                return <Todo
+                    checked={todo.checked}
+                    description={todo.description}
+                    title={todo.title}
+                    id={todo.id}
+                    key={`${todo.id}`} />
+            })}
     </>
 }
 
