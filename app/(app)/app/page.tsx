@@ -1,7 +1,5 @@
+import AddTodo from "@/components/add-todo"
 import TodoView from "@/components/todo-view"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
 import { Database } from "@/lib/database"
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs"
 import { cookies, headers } from "next/headers"
@@ -25,12 +23,8 @@ const App = async () => {
             <p className="text-slate-500 dark:text-slate-400">You've got 2 tasks coming up in the next days.</p>
         </div>
 
-        <div className="space-y-2">
-            <div className="px-3 flex items-center">
-                <Checkbox className="bg-white" />
-                <Input variant="ghost" placeholder="Add new todos..." />
-            </div>
-
+        <div className="space-y-4">
+            <AddTodo />
             <TodoView initialTodos={todos.data} />
         </div>
     </div>
