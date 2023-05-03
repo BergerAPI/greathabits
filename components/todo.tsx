@@ -2,9 +2,10 @@
 
 import { Database } from "@/lib/database";
 import { Checkbox } from "./ui/checkbox";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { useSupabase } from "@/lib/supabase-provider";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "./ui/context-menu";
+import { cn } from "@/lib/utils";
 
 type Todos = Database['public']['Tables']['todos']['Row']
 
@@ -13,6 +14,36 @@ interface Props {
     description: string | null
     id: number
     title: string
+}
+
+const TodoText: FC<{
+    description: string | null
+    htmlFor: string
+    title: string
+}> = ({ title, description, htmlFor }) => {
+
+    if (description !== null)
+        return <div className="grid gap-1.5 leading-none">
+            <label
+                htmlFor={htmlFor}
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+                {title}
+            </label>
+
+            <p className="text-sm text-muted-foreground">
+                {description}
+            </p>
+        </div>
+
+
+    return <label
+        htmlFor={htmlFor}
+        className="text-sm font-medium text-center peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+    >
+        {title}
+    </label>
+
 }
 
 const Todo: FC<Props> = ({ checked, id, title, description }) => {
@@ -38,20 +69,9 @@ const Todo: FC<Props> = ({ checked, id, title, description }) => {
         <ContextMenu>
             <ContextMenuTrigger>
                 <div className="flex rounded-md bg-white p-3">
-                    <div className="items-top flex space-x-2">
+                    <div className={cn("flex space-x-2", description === null ? "items-center" : "items-top")}>
                         <Checkbox id={`${id}`} checked={checked} onClick={onToggle} />
-
-                        <div className="grid gap-1.5 leading-none">
-                            <label
-                                htmlFor={`${id}`}
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                {title}
-                            </label>
-                            <p className="text-sm text-muted-foreground">
-                                {description}
-                            </p>
-                        </div>
+                        <TodoText htmlFor={`${id}`} description={description} title={title} />
                     </div>
                 </div>
             </ContextMenuTrigger>
