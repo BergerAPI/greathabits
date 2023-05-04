@@ -2,11 +2,11 @@
 
 import { Database } from "@/lib/database";
 import { Checkbox } from "./ui/checkbox";
-import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
+import { FC } from "react";
 import { useSupabase } from "@/lib/supabase-provider";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "./ui/context-menu";
-import { cn } from "@/lib/utils";
 import { Label } from "./ui/label";
+import { Badge } from "./ui/badge";
 
 type Todos = Database['public']['Tables']['todos']['Row']
 
@@ -23,28 +23,18 @@ const TodoText: FC<{
     title: string
 }> = ({ title, description, htmlFor }) => {
 
-    if (description !== null)
-        return <div className="grid gap-1.5 leading-none">
-            <Label
-                htmlFor={htmlFor}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-                {title}
-            </Label>
+    return <div className="grid gap-1.5 leading-none">
+        <Label
+            htmlFor={htmlFor}
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        >
+            {title}
+        </Label>
 
-            <p className="text-sm text-muted-foreground">
-                {description}
-            </p>
-        </div>
-
-
-    return <Label
-        htmlFor={htmlFor}
-        className="text-sm font-medium text-center peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-    >
-        {title}
-    </Label>
-
+        {description !== null && <p className="text-sm text-muted-foreground">
+            {description}
+        </p>}
+    </div>
 }
 
 const Todo: FC<Props> = ({ checked, id, title, description }) => {
@@ -69,10 +59,14 @@ const Todo: FC<Props> = ({ checked, id, title, description }) => {
     return <>
         <ContextMenu>
             <ContextMenuTrigger>
-                <div className="flex rounded-md bg-white p-3">
-                    <div className={cn("flex space-x-2", description === null ? "items-center" : "items-top")}>
+                <div className="rounded-md bg-white p-3 drop-shadow-sm">
+                    <div className={"flex space-x-2"}>
                         <Checkbox id={`${id}`} checked={checked} onClick={onToggle} />
-                        <TodoText htmlFor={`${id}`} description={description} title={title} />
+                        <div className="space-y-2">
+                            <TodoText htmlFor={`${id}`} description={description} title={title} />
+
+                            <Badge variant="outline">Test</Badge>
+                        </div>
                     </div>
                 </div>
             </ContextMenuTrigger>
