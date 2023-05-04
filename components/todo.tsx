@@ -6,6 +6,7 @@ import { FC, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { useSupabase } from "@/lib/supabase-provider";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "./ui/context-menu";
 import { cn } from "@/lib/utils";
+import { Label } from "./ui/label";
 
 type Todos = Database['public']['Tables']['todos']['Row']
 
@@ -24,12 +25,12 @@ const TodoText: FC<{
 
     if (description !== null)
         return <div className="grid gap-1.5 leading-none">
-            <label
+            <Label
                 htmlFor={htmlFor}
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
                 {title}
-            </label>
+            </Label>
 
             <p className="text-sm text-muted-foreground">
                 {description}
@@ -37,12 +38,12 @@ const TodoText: FC<{
         </div>
 
 
-    return <label
+    return <Label
         htmlFor={htmlFor}
         className="text-sm font-medium text-center peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
     >
         {title}
-    </label>
+    </Label>
 
 }
 

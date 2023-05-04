@@ -43,7 +43,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="bg-slate-100 h-full">
-                <main className="px-3 lg:px-0 max-w-5xl m-auto">
+                <main className="px-3 lg:px-0 max-w-5xl m-auto mt-16">
                     {children}
                 </main>
             </div>

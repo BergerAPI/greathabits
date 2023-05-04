@@ -17,7 +17,7 @@ const App = async () => {
     if (todos.data === null)
         return redirect("/")
 
-    return <div className="mt-16 space-y-8">
+    return <div className="space-y-8">
         <div>
             <h1 className="scroll-m-20 text-2xl font-medium tracking-tight">Welcome back, Niclas</h1>
             <p className="text-slate-500 dark:text-slate-400">You've got 2 tasks coming up in the next days.</p>
