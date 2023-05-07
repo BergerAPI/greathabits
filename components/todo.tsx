@@ -77,7 +77,7 @@ const Todo: FC<Props> = ({ checked, id, title, description }) => {
                     </div>
                 </ContextMenuTrigger>
                 <ContextMenuContent>
-                    <DialogTrigger>
+                    <DialogTrigger className="w-full">
                         <ContextMenuItem>
                             <Edit className="mr-2 h-4 w-4" />
                             Edit
