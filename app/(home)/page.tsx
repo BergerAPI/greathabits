@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+export const metadata = {
+  title: 'Just another todo software',
+  description: "No, really. There isn't much to it. I just wanted to try out supabase and NextJS 13's App-Directory"
+};
+
 export default function Home() {
   return (
     <div className="h-full flex justify-center items-center">

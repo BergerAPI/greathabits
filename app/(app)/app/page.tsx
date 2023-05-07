@@ -5,6 +5,11 @@ import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-next
 import { cookies, headers } from "next/headers"
 import { redirect } from "next/navigation"
 
+export const metadata = {
+    title: 'Greathabits',
+    description: "Please sign in to get some work done!"
+};
+
 const App = async () => {
     const supabase = createServerComponentSupabaseClient<Database>({ headers, cookies })
     const user = await supabase.auth.getUser()

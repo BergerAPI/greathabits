@@ -4,6 +4,11 @@ import { headers, cookies } from 'next/headers'
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+    title: 'Sign-In',
+    description: "Already have an account? Authorize yourself to get some work done!"
+};
+
 export default async function SignIn() {
     const supabase = createServerComponentSupabaseClient({ headers, cookies })
     const user = await supabase.auth.getUser()
