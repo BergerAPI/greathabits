@@ -1,11 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
-import { Database } from "@/lib/database"
 import { useSupabase } from "@/lib/supabase-provider"
-import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs"
-import { cookies, headers } from "next/headers"
+import { useRouter } from "next/navigation";
 import { FC, PropsWithChildren } from "react"
 
 interface SettingsSectionProps {
@@ -31,24 +29,17 @@ const SettingsSection: FC<SettingsSectionProps & PropsWithChildren> = ({ title, 
 }
 
 const Settings = async () => {
-    const supabase = createServerComponentSupabaseClient<Database>({ headers, cookies })
-    const user = await supabase.auth.getUser()
+    const { supabase } = useSupabase()
+    const { push } = useRouter()
 
     return <>
         <div className="space-y-12">
-            <SettingsSection title="Settings" description="Change information about your account.">
-                <form className="space-y-3">
-                    <div>
-                        <Label htmlFor="first-name">First Name</Label>
-                        <Input id="first-name" className="flex-1" placeholder="Enter your first name" />
-                    </div>
-
-                    <Button type="submit">Save Changes</Button>
-                </form>
-            </SettingsSection>
-
             <SettingsSection title="Danger" description="These settings are not reversible">
-                <Button variant="destructive">Delete Your Account</Button >
+                <Button variant="destructive" onClick={async () => {
+                    await supabase.rpc("deleteUser")
+                    await supabase.auth.signOut()
+                    push("/")
+                }}>Delete Your Account</Button>
             </SettingsSection>
         </div>
     </>

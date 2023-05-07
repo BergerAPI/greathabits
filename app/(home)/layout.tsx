@@ -13,29 +13,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     <h1>Great Habits</h1>
                 </div>
 
-                <div>
-                    <NavigationMenu>
-                        <NavigationMenuList>
-                            <NavigationMenuItem>
-                                <Link href="/product" legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        Product
-                                    </NavigationMenuLink>
-                                </Link>
-                            </NavigationMenuItem>
-
-                            <NavigationMenuItem>
-                                <Link href="/pricing" legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        Pricing
-                                    </NavigationMenuLink>
-                                </Link>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    </NavigationMenu>
-
-                </div>
-
                 <div className="flex gap-1">
                     <Link href="/auth/signin">
                         <Button variant="ghost">Sign In</Button>
