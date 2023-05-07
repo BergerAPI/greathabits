@@ -29,15 +29,19 @@ const TodoView: FC<Props> = ({ initialTodos }) => {
                 event: "INSERT",
                 schema: "public",
                 table: "todos"
-            }, (payload) => {
-                setTodos([...todos, payload.new as Todos])
+            }, async (payload) => {
+                const newTodos = await supabase.from("todos").select()
+
+                setTodos(newTodos.data!!)
             })
             .on("postgres_changes", {
                 event: "DELETE",
                 schema: "public",
                 table: "todos"
-            }, (payload) => {
-                setTodos(todos.filter(it => it.id !== payload.old.id))
+            }, async (payload) => {
+                const newTodos = await supabase.from("todos").select()
+
+                setTodos(newTodos.data!!)
             })
             .on("postgres_changes", {
                 event: "UPDATE",
