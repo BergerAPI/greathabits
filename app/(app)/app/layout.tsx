@@ -44,18 +44,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <DropdownMenu>
                     <DropdownMenuTrigger>
                         <Avatar>
-                            <AvatarImage src="https://github.com/bergerapi.png" alt="@bergerapi" />
-                            <AvatarFallback>CN</AvatarFallback>
+                            <AvatarFallback>U</AvatarFallback>
                         </Avatar>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
-                            <Link href="/app/settings">Profile</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <Link href="/app/settings">Setting</Link>
+                            <Link href="/app/settings">Settings</Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={async () => {
                             await supabase.auth.signOut()
