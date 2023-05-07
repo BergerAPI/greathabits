@@ -68,11 +68,7 @@ const Todo: FC<Props> = ({ checked, id, title, description }) => {
                     <div className="rounded-md bg-white p-3 drop-shadow-sm">
                         <div className={"flex space-x-2"}>
                             <Checkbox id={`${id}`} checked={checked} onClick={onToggle} />
-                            <div className="space-y-2">
-                                <TodoText htmlFor={`${id}`} description={description} title={title} />
-
-                                <Badge variant="outline">Test</Badge>
-                            </div>
+                            <TodoText htmlFor={`${id}`} description={description} title={title} />
                         </div>
                     </div>
                 </ContextMenuTrigger>
