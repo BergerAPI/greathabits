@@ -19,8 +19,8 @@ const App = async () => {
 
     return <div className="space-y-8">
         <div>
-            <h1 className="scroll-m-20 text-2xl font-medium tracking-tight">Welcome back, Niclas</h1>
-            <p className="text-slate-500 dark:text-slate-400">You've got 2 tasks coming up in the next days.</p>
+            <h1 className="scroll-m-20 text-2xl font-medium tracking-tight">Welcome back</h1>
+            <p className="text-slate-500 dark:text-slate-400">Get to work and complete some todos!</p>
         </div>
 
         <div className="space-y-4">
