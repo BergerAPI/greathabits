@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                             </NavigationMenuItem>
 
                             <NavigationMenuItem>
-                                <Link href="/settings" legacyBehavior passHref>
+                                <Link href="/app/settings" legacyBehavior passHref>
                                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                         Settings
                                     </NavigationMenuLink>
