@@ -29,7 +29,7 @@ const TodoView: FC<Props> = ({ initialTodos }) => {
                 event: "INSERT",
                 schema: "public",
                 table: "todos"
-            }, async (payload) => {
+            }, async (_) => {
                 const newTodos = await supabase.from("todos").select()
 
                 setTodos(newTodos.data!!)
@@ -38,7 +38,7 @@ const TodoView: FC<Props> = ({ initialTodos }) => {
                 event: "DELETE",
                 schema: "public",
                 table: "todos"
-            }, async (payload) => {
+            }, async (_) => {
                 const newTodos = await supabase.from("todos").select()
 
                 setTodos(newTodos.data!!)
