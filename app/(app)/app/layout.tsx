@@ -31,9 +31,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                             </NavigationMenuItem>
 
                             <NavigationMenuItem>
-                                <Link href="/pricing" legacyBehavior passHref>
+                                <Link href="/settings" legacyBehavior passHref>
                                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        Pricing
+                                        Settings
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
